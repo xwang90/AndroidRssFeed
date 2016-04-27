@@ -77,8 +77,10 @@ namespace AndroidRssFeed
             else
             {
                 display_webview.Settings.JavaScriptEnabled = true;
-                display_webview.LoadData(playItemFromDatabase.Content, "text/html", "charset=UTF-8");
-                
+                if(playItemFromDatabase!=null)
+                   display_webview.LoadData(playItemFromDatabase.Content, "text/html", "charset=UTF-8");
+                else
+                   display_webview.LoadData("", "text/html", "charset=UTF-8");
             }
 
             return view;

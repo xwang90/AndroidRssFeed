@@ -175,6 +175,24 @@ namespace AndroidRssFeed
                 dba.CreateDatabase(DATABASE_NAME);
                 DbAllFeedItems = dba.getDbAllRssFeedItems();
                 dba.close();
+
+                if (DbAllFeedItems.Count==0)//Handle the case when there is no Internet connection and database is also empty.
+                {
+                    RSSFeedItem rssfeeditem = new RSSFeedItem();
+                    rssfeeditem.Id = 1;
+                    rssfeeditem.Description = "";
+                    rssfeeditem.Link = "";
+                    rssfeeditem.PublishDate = "";
+                    rssfeeditem.Author = "";
+                    rssfeeditem.AuthorEmail = "";
+                    rssfeeditem.Title = "";
+                    rssfeeditem.Content = "";
+                    rssfeeditem.Image = "";
+                    rssfeeditem.ShowImage = false;
+                    DbAllFeedItems.Add(rssfeeditem);
+                }
+
+
                 ListAdapter = new FeedItemAdapter(Activity, DbAllFeedItems);
             }
            

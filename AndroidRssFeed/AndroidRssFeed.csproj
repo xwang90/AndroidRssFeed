@@ -101,9 +101,6 @@
     <AndroidResource Include="Resources\Drawable\background_card.9.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\Drawable\default_person.png" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\Values\Colors.xml" />
   </ItemGroup>
   <ItemGroup>

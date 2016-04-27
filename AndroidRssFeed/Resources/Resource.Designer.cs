@@ -88,10 +88,7 @@ namespace AndroidRssFeed
 			public const int background_card = 2130837504;
 			
 			// aapt resource value: 0x7f020001
-			public const int default_person = 2130837505;
-			
-			// aapt resource value: 0x7f020002
-			public const int ic_launcher = 2130837506;
+			public const int ic_launcher = 2130837505;
 			
 			static Drawable()
 			{
