@@ -67,11 +67,23 @@ namespace AndroidRssFeed
             if (isOnline)
             {
                 string displayLink=this.Arguments.GetString("current_play_link");
-                WebClient client = new WebClient();
-                
-                htmlCode = client.DownloadString(displayLink);
-                display_webview.Settings.JavaScriptEnabled = true;
-                display_webview.LoadData(htmlCode, "text/html", "charset=UTF-8");
+
+                if (displayLink!=null&& displayLink != "")
+                {
+                    WebClient client = new WebClient();
+                    htmlCode = client.DownloadString(displayLink);
+                    display_webview.Settings.JavaScriptEnabled = true;
+
+                    if(htmlCode!=null)
+                      display_webview.LoadData(htmlCode, "text/html", "charset=UTF-8");
+                    else
+                      display_webview.LoadData("", "text/html", "charset=UTF-8");
+
+                }
+                else
+                {
+                    display_webview.LoadData("", "text/html", "charset=UTF-8");
+                }
                 
             }
             else

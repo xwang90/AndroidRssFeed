@@ -22,6 +22,7 @@ namespace AndroidRssFeed
         private bool _isDualPane;
         private ObservableCollection<RSSFeedItem> DbAllFeedItems;
         private View previous;
+        private bool isOnlineLastRefresh=false;
         
         private const string DATABASE_NAME = "rssfeedposts";
         private static MasterViewModel viewModel;
@@ -80,7 +81,7 @@ namespace AndroidRssFeed
         {
             previous.Selected = false;
             v.Selected = true;
-            previous = v;     
+            previous = v; 
 
             ShowDetails(position);
         }
@@ -98,12 +99,12 @@ namespace AndroidRssFeed
             bool isOnline = (activeConnection != null) && activeConnection.IsConnected;
             RSSFeedItem DisplayedRSSFeedItem;
 
-            _currentPlayId = playId;
-
-            if(isOnline)
-              DisplayedRSSFeedItem = viewModel.FeedItems[_currentPlayId];
+            _currentPlayId = playId; 
+            
+            if (isOnlineLastRefresh)
+                DisplayedRSSFeedItem = viewModel.FeedItems[_currentPlayId];
             else
-              DisplayedRSSFeedItem = DbAllFeedItems[_currentPlayId];
+                DisplayedRSSFeedItem = DbAllFeedItems[_currentPlayId];
             
 
             if (_isDualPane)
@@ -155,6 +156,7 @@ namespace AndroidRssFeed
             ConnectivityManager connectivityManager = (ConnectivityManager)Activity.GetSystemService(Context.ConnectivityService);
             NetworkInfo activeConnection = connectivityManager.ActiveNetworkInfo;
             bool isOnline = (activeConnection != null) && activeConnection.IsConnected;
+            isOnlineLastRefresh = isOnline;
 
             Log.Debug("RssFeedItemListFragment", "isOnline: " + isOnline);
 
