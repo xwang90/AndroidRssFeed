@@ -148,9 +148,12 @@ namespace AndroidRssFeed.Db
                 //rssfeeditme.Caption = mCursor.GetString(mCursor.GetColumnIndex(KEY_CAPTION));
                 rssfeeditem.Image = mCursor.GetString(mCursor.GetColumnIndex(KEY_IMAGE));
                 rssfeeditem.ShowImage = mCursor.GetInt(mCursor.GetColumnIndex(KEY_SHOWIMAGE))>0;
+                mCursor.Close();
 
                 return rssfeeditem;
             }
+
+            mCursor.Close();
             return null;
         }
 
@@ -189,6 +192,8 @@ namespace AndroidRssFeed.Db
                 while (mCursor.MoveToNext());   
                                 
             }
+
+            mCursor.Close();
 
             return DbFeedItems;
         }
